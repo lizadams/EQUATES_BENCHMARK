@@ -18,6 +18,8 @@ while ($pdate < $runto)
 	  echo "Process files ending in $pdate"
 	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'BCON_CONC_12US1_CMAQv53_TS_108NHEMI_regrid_2017${pdate}.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
 	    gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_CGRID_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+          gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
+         gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_MEDIA_CONC_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
 	      @ pdate++
 
       end     #End of while loop
