@@ -2,7 +2,7 @@
 
   scripts to download data from google drive
 
-  The directory structure obtained beginning with EQUATES mimics the input data directory structure used by the EQUATES CMAQ Model run script.
+  The directory structure mimics the input data directory structure used by the EQUATES CMAQ Model run script.
 
 ## obtain the gdrive download scripts using the command:
 
