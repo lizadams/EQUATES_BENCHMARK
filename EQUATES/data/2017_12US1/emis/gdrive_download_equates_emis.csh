@@ -14,8 +14,8 @@ set year = 2016
 set month = 12
 set runto = 12
 
-#gdrive list --name-width 200 --absolute -q "trashed = false and name = 'static_emis_files_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-#gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_${year}_stackgroups_epicsoil_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+gdrive list --name-width 200 --absolute -q "trashed = false and name = 'static_emis_files_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_${year}_stackgroups_epicsoil_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
 
 while ($month <= $runto)
    echo "Process files ending in $month"
