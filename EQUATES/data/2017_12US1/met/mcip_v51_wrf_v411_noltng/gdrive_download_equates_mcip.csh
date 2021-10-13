@@ -8,15 +8,16 @@
 # # ./SCRIPT_NAME
 # # ./gdrive_download_equates_mcip.csh
 #
-# note, in this example, the script will download from Jan 1 to Jan 10, 2017
-set pdate = 101
-set runto = 110
+# note, in this example, the script will download from December 15, 2016 to December 31, 2016
+# note, this script does not handle changes in the calendar year
+set pdate = 20161215 
+set runto = 20161231
 
 
 while ($pdate <= $runto)
 	  echo "Process files ending in $pdate"
-	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'MCIPv51_WRFv411_noltng_12US1.35L.20170${pdate}.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-	   tar -xvf MCIPv51_WRFv411_noltng_12US1.35L.20170${pdate}.tar 
+	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'MCIPv51_WRFv411_noltng_12US1.35L.${pdate}.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+	   tar -xvf MCIPv51_WRFv411_noltng_12US1.35L.${pdate}.tar 
 	      @ pdate++
 
       end     #End of while loop

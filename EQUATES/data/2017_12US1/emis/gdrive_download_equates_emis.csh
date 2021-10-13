@@ -9,18 +9,19 @@
 #
 #
 #set the month to be downloaded
-# in this example, the emissions inputs for the month of January 2017 will be downloaded
-set pdate = 01
-set runto = 02
+# in this example, the emissions inputs for the month of December 2016 will be downloaded
+set year = 2016
+set month = 12
+set runto = 12
 
-gdrive list --name-width 200 --absolute -q "trashed = false and name = 'static_emis_files_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_2017_stackgroups_epicsoil_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+#gdrive list --name-width 200 --absolute -q "trashed = false and name = 'static_emis_files_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+#gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_${year}_stackgroups_epicsoil_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
 
-while ($pdate < $runto)
-   echo "Process files ending in $pdate"
-   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'epic_files_2017_${pdate}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_2017_merged_nobeis_norwc_${pdate}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_ptsectors_plus_rwc_2017_${pdate}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-	      @ pdate++
+while ($month <= $runto)
+   echo "Process files ending in $month"
+   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'epic_files_${year}_${month}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_${year}_merged_nobeis_norwc_${month}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'model_ready_emis_ptsectors_plus_rwc_${year}_${month}_EQUATES_v1.0.tar'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+	      @ month++
 
       end     #End of while loop

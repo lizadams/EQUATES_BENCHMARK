@@ -7,19 +7,19 @@
 # # ./SCRIPT_NAME
 # # ./gdrive_download_equates.icbc.csh
 #
-#
-# use months 01, 02, 03, etc
-# in this example, the input files for the month of January 2017 will be downloaded
-set pdate = 01
-set runto = 02
+# in this example, the input files for the month of December 2016 will be downloaded
+# note, the script does not handle change in calendar year
+set year = 2016
+set month = 12
+set runto = 12
 
 
-while ($pdate < $runto)
-	  echo "Process files ending in $pdate"
-	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'BCON_CONC_12US1_CMAQv53_TS_108NHEMI_regrid_2017${pdate}.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-	    gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_CGRID_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
-          gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
-         gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_MEDIA_CONC_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_2017_12US1_2017${pdate}01.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
-	      @ pdate++
+while ($month <= $runto)
+	  echo "Process files ending in $month"
+	  #	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'BCON_CONC_12US1_CMAQv53_TS_108NHEMI_regrid_${month}.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+	    gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_CGRID_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+          gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
+         gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_MEDIA_CONC_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
+	      @ month++
 
       end     #End of while loop

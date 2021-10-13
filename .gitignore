@@ -1,0 +1,6 @@
+#git will ignore files with the following extensions
+*.nc4
+*.tar
+*.nc
+*.nc.incomplete
+*.tar.incomplete
