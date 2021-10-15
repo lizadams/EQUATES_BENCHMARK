@@ -311,7 +311,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
   echo "Set up input and output files for Day ${TODAYG}."
 
   #> set output file name extensions
-  setenv CTM_APPL ${RUNID}_${YESTERYEAR}_12US1_${YYYYMMDD} 
+  setenv CTM_APPL ${RUNID}_${YYYYMMDD} 
   
   #> Copy Model Configuration To Output Folder
   if ( ! -d "$OUTDIR" ) mkdir -p $OUTDIR
@@ -535,7 +535,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
           setenv ISAM_PREVDAY
        else
           setenv ISAM_NEW_START N
-          setenv ISAM_PREVDAY "$OUTDIR/CCTM_SA_CGRID_${RUNID}_${YESTERYEAR}_12US1_${YESTERDAY}.nc"
+          setenv ISAM_PREVDAY "$OUTDIR/CCTM_SA_CGRID_${RUNID}_${YESTERDAY}.nc"
        endif
 
        #> Set Up ISAM Output Filenames
@@ -576,7 +576,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
  else
     setenv DDM3D_RST Y
     set S_ICpath = $OUTDIR
-    set S_ICfile = CCTM_SENGRID_${RUNID}_${YESTERYEAR}_12US1_${YESTERDAY}.nc
+    set S_ICfile = CCTM_SENGRID_${RUNID}_${YESTERDAY}.nc
  endif
 
  setenv DDM3D_BCS F      # use sensitivity bc file for nested runs [ T | Y | F | N ] (default is N/F)
@@ -676,7 +676,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
         #echo "Deleting output file: $file"
         /bin/rm -f $file  
      end
-     /bin/rm -f ${OUTDIR}/CCTM_EMDIAG*${RUNID}_${YESTERYEAR}_12US1_${YYYYMMDD}.nc
+     /bin/rm -f ${OUTDIR}/CCTM_EMDIAG*${RUNID}_${YYYYMMDD}.nc
 
   else
      #> error if previous log files exist
@@ -795,11 +795,11 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
   setenv POSTDIR ${OUTDIR}/PostProcess
   setenv METCRO2D_NAME ${MET_CRO_2D}
   setenv METCRO3D_NAME ${MET_CRO_3D}
-  setenv CCTM_ACONC_NAME "CCTM_ACONC_${RUNID}_${YESTERYEAR}_12US1"
-  setenv CCTM_CONC_NAME "CCTM_CONC_${RUNID}_${YESTERYEAR}_12US1"
-  setenv CCTM_APMDIAG_NAME "CCTM_APMDIAG_${RUNID}_${YESTERYEAR}_12US1"
-  setenv CCTM_WETDEP1_NAME "CCTM_WETDEP1_${RUNID}_${YESTERYEAR}_12US1"
-  setenv CCTM_DRYDEP_NAME "CCTM_DRYDEP_${RUNID}_${YESTERYEAR}_12US1"
+  setenv CCTM_ACONC_NAME "CCTM_ACONC_${RUNID}"
+  setenv CCTM_CONC_NAME "CCTM_CONC_${RUNID}"
+  setenv CCTM_APMDIAG_NAME "CCTM_APMDIAG_${RUNID}"
+  setenv CCTM_WETDEP1_NAME "CCTM_WETDEP1_${RUNID}"
+  setenv CCTM_DRYDEP_NAME "CCTM_DRYDEP_${RUNID}"
 
 
     sbatch --export=ALL ${CMAQ_HOME}/POST/EQUATES/combine_equates_aconc_dep_conc_cb6r3_ae7_aq_batch.csh
