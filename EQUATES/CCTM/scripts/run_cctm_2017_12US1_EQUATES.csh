@@ -76,7 +76,6 @@ echo 'Start Model Run At ' `date`
 #> this information will be collected into this one string, $RUNID, for easy
 #> referencing in output binaries and log files as well as in other scripts.
  setenv RUNID  ${VRSN}_${MECH}_${EMIS}_${APPL}
- setenv RUNID532 v532_${MECH}_${EMIS}_${APPL}
  setenv CMAQ_HOME /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.3
 
 #> Set the build directory (this is where the CMAQ executable
@@ -331,9 +330,9 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
      setenv SOILINP    $ICpath/CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${YESTERYEAR}_12US1_${YESTERDAY}.nc
   else
      set ICpath = $OUTDIR
-     setenv ICFILE CCTM_CGRID_${RUNID}_${YESTERYEAR}_12US1_${YESTERDAY}.nc
-     setenv INIT_MEDC_1 $ICpath/CCTM_MEDIA_CONC_${RUNID}_${YESTERYEAR}_12US1_${YESTERDAY}.nc
-     setenv SOILINP    $OUTDIR/CCTM_SOILOUT_${RUNID}_${YESTERYEAR}_12US1_${YESTERDAY}.nc
+     setenv ICFILE CCTM_CGRID_${RUNID}_${YESTERDAY}.nc
+     setenv INIT_MEDC_1 $ICpath/CCTM_MEDIA_CONC_${RUNID}_${YESTERDAY}.nc
+     setenv SOILINP    $OUTDIR/CCTM_SOILOUT_${RUNID}_${YESTERDAY}.nc
   endif
 
   #> Boundary conditions, use STAGE files if CCTM uses the stage option for depv
