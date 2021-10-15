@@ -1,0 +1,46 @@
+!#start   YYYYJJJ  010000
+!#end     YYYYJJJ  000000
+#layer         1
+
+/
+! This Species Definition File is for Use with the COMBINE tool built for 
+! post-processing CMAQ output. It is compatible with CMAQv5.2.
+! Date: May 12 2017
+
+! Output variables that begin with 'PM' represent those in which a size cut was 
+! applied based on modeled aerosol mode parameters.  For example, PM25_NA is all 
+! sodium that falls below 2.5 um diameter. These 'PM' variables are used for 
+! comparisons at IMPROVE and CSN sites.
+
+! Output variables that begin with 'PMAMS' represent the mass that would have
+! been detected  by an Aerosol Mass Spectrometer.
+
+! Output variables beginning with 'A' (aside from AIR_DENS) represent a 
+! combination of aerosol species in which no size cut was applied.  For example, 
+! ASO4IJ is the sum of i-mode and j-mode sulfate.  These 'A' variables are used 
+! for comparisons at CASTNet sites.
+
+! Output variables beginning with 'PMC' refer to the coarse fraction of total PM,
+! computed by summing all modes and subtracting the PM2.5 fraction.  These 'PMC'
+! variables are used for comparisons at SEARCH sites.
+
+! This Species Definition File is just for use with the uncoupled, offline CMAQ,
+! model. If you are processing WRF-CMAQ results, a different Species Definition
+! file is required.
+
+/ File [1]: PHOTDIAG1 file
+/
+/new species    ,units     ,expression
+                                         
+
+!-------------------------------------------!
+!-------- PHOTDIAG1 Quantities -------------!
+!-------------------------------------------!
+NO2_COLUMN    ,petamolec cm-2 ,NO2_COLUMN[1]
+CO_COLUMN     ,petamolec cm-2 ,CO_COLUMN[1]
+SO2_COLUMN    ,petamolec cm-2 ,SO2_COLUMN[1]
+HCHO_COLUMN   ,petamolec cm-2 ,HCHO_COLUMN[1]
+O3_COLUMN     ,DU             ,TROPO_O3_COLUMN[1]
+JNO2          ,min-1          ,JNO2[1]
+AOD550        ,-              ,AOD_W550_ANGST[1]
+

@@ -1,0 +1,84 @@
+/#start   YYYYDDD  HHMMSS
+/#end     YYYYDDD  HHMMSS
+/#layer      KLAY     (default is all layers)
+/
+/
+/ File [1]: CMAQ Bidi DDEP file
+/ File [2]: CMAQ LTNGHRLY file processed by vertot
+/ File [3]: CMAQ B3GTS_S file
+/ File [4]: GRIDCRO2D file
+/
+/new species,    units,     expression,   description
+
+!--------------------------------------------------------!
+!-------------Fertilizer NH3 from bidi DDEP--------------!
+!-Convert Units from kg/hectare (hourly total) to g s-1--!
+!--------------------------------------------------------!
+
+NH3             ,g s-1      , NH3_Emis[1] * 1000. *   100   *              12. * 12. *               / 3600. , fertilizer NH3 emissions NH3_Emis from STAGE bidi DDEP
+!                                           kg->g |   ha^-1->km^-2     | projected cell area in km^2 | hr-1->s-1
+
+!NH3             ,g s-1      , NH3_Emis[1] * 1000. *   100   *              12. * 12. *         / 3600.      / MSFX2[4], fertilizer NH3 emissions NH3_Emis from STAGE bidi DDEP
+!                                           kg->g |  ha^-1->km^-2 | projected cell area in km^2 | hr-1->s-1 | (km^-2 for real world area) -> (km^-2 for projected area)
+
+!--------------------------------------------------------!
+!-Inline Lightning NO from LTNHGHRLY processed by vertot-!
+!----------Convert Units from mol s-1 to g s-1-----------!
+!--------------------------------------------------------!
+
+NO_LTNG         ,g s-1         ,30. * NO[2], hourly vertical sum of NO produced from CMAQ inline lightning
+
+!--------------------------------------------------------!
+!---Inline biogenic and soil NO emissions from B2GTS_S---!
+!----------------Keep units as g s-1---------------------!
+!--------------------------------------------------------!
+
+ISOP            ,g s-1          ,ISOP[3], inline biogenic ISOP emissions from CMAQ B3GTS_S file
+
+OLE             ,g s-1          ,OLE[3], inline biogenic OLE emissions from CMAQ B3GTS_S file
+
+PAR             ,g s-1          ,PAR[3], inline biogenic PAR emissions from CMAQ B3GTS_S file
+
+MEOH            ,g s-1          ,MEOH[3], inline biogenic MEOH emissions from CMAQ B3GTS_S file
+
+APIN            ,g s-1          ,APIN[3], inline biogenic APIN emissions from CMAQ B3GTS_S file
+
+TERP            ,g s-1          ,TERP[3], inline biogenic TERP emissions from CMAQ B3GTS_S file
+
+ETH             ,g s-1          ,ETH[3], inline biogenic ETH emissions from CMAQ B3GTS_S file
+
+ETOH            ,g s-1          ,ETOH[3], inline biogenic ETOH emissions from CMAQ B3GTS_S file
+
+ACET            ,g s-1          ,ACET[3], inline biogenic ACET emissions from CMAQ B3GTS_S file
+
+ALDX            ,g s-1          ,ALDX[3], inline biogenic ALDX emissions from CMAQ B3GTS_S file
+
+IOLE            ,g s-1          ,IOLE[3], inline biogenic IOLE emissions from CMAQ B3GTS_S file
+
+FORM            ,g s-1          ,FORM[3], inline biogenic FORM emissions from CMAQ B3GTS_S file
+
+FORM_PRIMARY    ,g s-1          ,FORM_PRIMARY[3], inline FORM_PRIMARY biogenic emissions from CMAQ B3GTS_S file
+
+ALD2            ,g s-1          ,ALD2[3], inline biogenic ALD2 emissions from CMAQ B3GTS_S file
+
+ALD2_PRIMARY    ,g s-1          ,ALD2_PRIMARY[3], inline ALD2_PRIMARY biogenic emissions from CMAQ B3GTS_S file
+
+ETHA            ,g s-1          ,ETHA[3], inline biogenic ETHA emissions from CMAQ B3GTS_S file
+
+FACD            ,g s-1          ,FACD[3], inline biogenic FACD emissions from CMAQ B3GTS_S file
+
+AACD            ,g s-1          ,AACD[3], inline biogenic AACD emissions from CMAQ B3GTS_S file
+
+KET             ,g s-1          ,KET[3], inline biogenic KET emissions from CMAQ B3GTS_S file
+
+CO              ,g s-1          ,CO[3], inline biogenic CO emissions from CMAQ B3GTS_S file
+
+SESQ            ,g s-1          ,SESQ[3], inline biogenic SESQ emissions from CMAQ B3GTS_S file
+
+NO_BIOG         ,g s-1          ,NO[3], inline soil NO emissions from CMAQ B3GTS_S file
+
+!--------------------------------------------------------!
+!--Total Inline NO (sum of lightning and biogenic/soil---!
+!--------------------------------------------------------!
+
+NO              ,g s-1          ,NO_LTNG[0] + NO_BIOG[0], sum of lightning and biogenic NO
