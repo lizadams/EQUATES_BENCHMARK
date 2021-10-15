@@ -107,7 +107,7 @@ echo 'Start Model Run At ' `date`
 
 #> Set Start and End Days for looping
  setenv NEW_START FALSE             #> Set to FALSE for model restart
- setenv HOT_START TRUE             # Set to TRUE if starting from previous model run
+ set HOT_START = TRUE               #> Set to TRUE if the model restart uses EQUATES restart files downloaded from the CMAS data warehouse
  set START_DATE = "2016-12-16"     #> beginning date (December 16, 2016)
  set END_DATE   = "2017-01-02"     #> ending date    (January 02, 2017)
 
@@ -819,6 +819,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
 
   #> The next simulation day will, by definition, be a restart
   setenv NEW_START false
+  set HOT_START = FALSE
 
   #> Increment both Gregorian and Julian Days
   set TODAYG = `date -ud "${TODAYG}+1days" +%Y-%m-%d` #> Add a day for tomorrow
