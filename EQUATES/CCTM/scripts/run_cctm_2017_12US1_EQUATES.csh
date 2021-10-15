@@ -107,7 +107,7 @@ echo 'Start Model Run At ' `date`
 
 #> Set Start and End Days for looping
  setenv NEW_START FALSE             #> Set to FALSE for model restart
- set HOT_START = TRUE               #> Set to TRUE if the model restart uses EQUATES restart files downloaded from the CMAS data warehouse
+ set EQUATES_RESTART = TRUE        #> Set to TRUE if the model restart uses EQUATES restart files downloaded from the CMAS data warehouse
  set START_DATE = "2016-12-16"     #> beginning date (December 16, 2016)
  set END_DATE   = "2017-01-02"     #> ending date    (January 02, 2017)
 
@@ -324,7 +324,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
   if ($NEW_START == true || $NEW_START == TRUE ) then
      setenv ICFILE ICON_v532_CMAQv53_TS_regrid_12US1_20091201
      setenv INIT_MEDC_1 notused
-  else if ($HOT_START == true || $HOT_START == TRUE ) then
+  else if ($EQUATES_RESTART == true || $EQUATES_RESTART == TRUE ) then
      setenv ICFILE CCTM_CGRID_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${YESTERYEAR}_12US1_${YESTERDAY}.nc
      setenv INIT_MEDC_1 $ICpath/CCTM_MEDIA_CONC_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${YESTERYEAR}_12US1_${YESTERDAY}.nc
      setenv SOILINP    $ICpath/CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${YESTERYEAR}_12US1_${YESTERDAY}.nc
@@ -819,7 +819,7 @@ set TODAYYEAR = `echo $TODAYJ | cut -c 1-4` #> Convert YYYYJJJ to YYYY
 
   #> The next simulation day will, by definition, be a restart
   setenv NEW_START false
-  set HOT_START = FALSE
+  set EQUATES_RESTART = FALSE
 
   #> Increment both Gregorian and Julian Days
   set TODAYG = `date -ud "${TODAYG}+1days" +%Y-%m-%d` #> Add a day for tomorrow
