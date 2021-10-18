@@ -7,6 +7,7 @@
 #SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES/logs/calc_tmetric_avg_monthly_combine_%j.log
 
  set WORKDIR = /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
+ set CMAQREPO = /proj/ie/proj/CMAS/EQUATES/CMAQ_REPO
  set BINDIR = $WORKDIR/POST/hr2day/scripts/BLD_hr2day_v532_gcc
  set EXEC = hr2day_v532.exe
 
@@ -15,7 +16,7 @@
 
 #> Location of time zone data file, tz.csv (this is a required input file
 #> when using USELOCAL Y to shift from GMT to local time)
- setenv TZFILE $WORKDIR/POST/bldoverlay/inputs/tz.csv
+ setenv TZFILE $CMAQREPO/POST/bldoverlay/inputs/tz.csv
 
 #> Set to use daylight savings time (default is N)
  setenv USEDST N
