@@ -76,16 +76,19 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
 #> Executable call:
  ${BLD_DIR}/${EXEC}
 
-# if this is the last day of the month, archive the combined output file
-# run m3proc for monthly averages
+# if this is the last day of the month run calc_tmetric for monthly averages
+  if ( ${MMtomorrow} != ${MM} ) then
+   setenv INFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
+   setenv OUTFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}_av.nc
+   sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg_monthly_combine_batch.csh
+ endif
 
-#  if ( ${MMtomorrow} != ${MM} ) then
-#    aput -q -retention=maximum -a ${ASMDIR_COMBINE1} ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
-#    setenv INFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
-#   setenv OUTFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}_av.nc
-#   sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg_monthly_combine_batch.csh
-# endif
-
+# if this is the last day of the month run hr2day for daily averages
+  if ( ${MMtomorrow} != ${MM} ) then
+   setenv INFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
+   setenv OUTFILE ${POSTDIR}/HR2DAY_ACONC_${RUNID}_${YYYY}${MM}.nc
+   sbatch --export=ALL $WORKDIR/POST/POST/hr2day_daily_averages_batch.csh
+ endif
 
 #
 # PHOTDIAG1 next
@@ -112,11 +115,9 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
 #> Executable call:
  ${BLD_DIR}/${EXEC}
 
-# if this is the last day of the month, archive the combined output file
-# run m3proc for monthly averages
+# if this is the last day of the month run calc_metric for monthly averages
 
   if ( ${MMtomorrow} != ${MM} ) then
-#    aput -q -retention=maximum -a ${ASMDIR_COMBINE1} ${POSTDIR}/COMBINE_COLUMN_${RUNID}_${YYYY}${MM}.nc
     setenv INFILE ${POSTDIR}/COMBINE_COLUMN_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_COLUMN_${RUNID}_${YYYY}${MM}_av.nc
     sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg_monthly_combine_batch.csh
@@ -149,11 +150,8 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
 #> Executable call:
  ${BLD_DIR}/${EXEC}
 
-# if this is the last day of the month, archive the output file
-# and run m3tproc to compute monthly sum
-
+# if this is the last day of the month run calc_tmetric to compute monthly sum
   if ( ${MMtomorrow} != ${MM} ) then
-#    aput -q -retention=maximum -a ${ASMDIR_COMBINE1} ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}.nc
     setenv INFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}_sum.nc
     sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_sum_monthly_combine_batch.csh
@@ -185,8 +183,8 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
 #> Executable call:
  ${BLD_DIR}/${EXEC}
 
+# if this is the last day of the month run calc_tmetric to compute monthly sum
   if ( ${MMtomorrow} != ${MM} ) then
-#    aput -q -retention=maximum -a ${ASMDIR_COMBINE1} ${POSTDIR}/COMBINE_INLINE_EMIS_${RUNID}_${YYYY}${MM}.nc
     setenv INFILE ${POSTDIR}/COMBINE_INLINE_EMIS_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_INLINE_EMIS_${RUNID}_${YYYY}${MM}_sum.nc
     sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_sum_monthly_combine_batch.csh
@@ -218,30 +216,12 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
 #> Executable call:
  ${BLD_DIR}/${EXEC}
 
-# if this is the last day of the month, archive the combined output file
-# run m3proc for monthly averages
-
+# if this is the last day of the month run calc_tmetric to compute monthly averages
   if ( ${MMtomorrow} != ${MM} ) then
-#   aput -q -retention=maximum -a ${ASMDIR_COMBINE2} ${POSTDIR}/COMBINE_CONC3D_${RUNID}_${YYYY}${MM}.nc
     setenv INFILE ${POSTDIR}/COMBINE_CONC3D_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_CONC3D_${RUNID}_${YYYY}${MM}_av.nc
     sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg3d_monthly_combine_batch.csh
   endif
-
-
-#
-# archive and delete files
-#
-
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_ACONC_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_APMDIAG_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_DRYDEP_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_WETDEP1_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_PHOTDIAG1_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_CONC_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_LTNGCOL_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_B3GTS_S_${CTM_APPL}.nc
-#aput -q -d -retention=maximum -a ${ASMDIR_OUTPUTS} ${OUTDIR}/CCTM_DEPV_${CTM_APPL}.nc
 
 #> Increment both Gregorian and Julian Days
  set TODAYG = `date -ud "${TODAYG}+1days" +%Y-%m-%d` #> Add a day for tomorrow
