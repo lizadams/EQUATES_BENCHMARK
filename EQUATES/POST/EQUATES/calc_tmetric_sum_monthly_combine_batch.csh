@@ -1,6 +1,6 @@
 #! /bin/csh -f
 
-#SBATCH -t 10:00:00
+#SBATCH -t 4:00:00
 #SBATCH -n 1
 #SBATCH -J calc_tmetric
 #SBATCH -p debug_queue
