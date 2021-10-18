@@ -6,12 +6,13 @@
 #SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES/logs/combine_cmaqv53_ts_aconc_dep_conc_cb6r3_ae7_aq_batch_%j.txt
 
 set WORKDIR = /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
+set EQPOSTSCR = $WORKDIR/POST/EQUATES
 
-set SPEC_CONC = $WORKDIR/POST/EQUATES/SpecDef_aconc_cmaqv53_ts_cb6r3_ae7_aq.txt
-set SPEC_PHOT = $WORKDIR/POST/EQUATES/SpecDef_photdiag_cmaqv53_ts_cb6r3_ae7_aq.txt
-set SPEC_DEP = $WORKDIR/POST/EQUATES/SpecDef_dep_cmaqv53_ts_cb6r3_ae7_aq.txt
-set SPEC_EMIS = $WORKDIR/POST/EQUATES/SpecDef_inline_emis_equates_12us1.txt
-set SPEC_CONC_3D = $WORKDIR/POST/EQUATES/SpecDef_conc3d_cmaqv53_ts_cb6r3_ae7_aq.txt
+set SPEC_CONC = $EQPOSTSCR/SpecDef_aconc_cmaqv53_ts_cb6r3_ae7_aq.txt
+set SPEC_PHOT = $EQPOSTSCR/SpecDef_photdiag_cmaqv53_ts_cb6r3_ae7_aq.txt
+set SPEC_DEP = $EQPOSTSCR/SpecDef_dep_cmaqv53_ts_cb6r3_ae7_aq.txt
+set SPEC_EMIS = $EQPOSTSCR/SpecDef_inline_emis_equates_12us1.txt
+set SPEC_CONC_3D = $EQPOSTSCR/SpecDef_conc3d_cmaqv53_ts_cb6r3_ae7_aq.txt
 
 setenv GENSPEC N
 
@@ -80,14 +81,14 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
    setenv INFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
    setenv OUTFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}_av.nc
-   sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg_monthly_combine_batch.csh
+   sbatch --export=ALL $EQPOSTSCR/calc_tmetric_avg_monthly_combine_batch.csh
  endif
 
 # if this is the last day of the month run hr2day for daily averages
   if ( ${MMtomorrow} != ${MM} ) then
    setenv INFILE ${POSTDIR}/COMBINE_ACONC_${RUNID}_${YYYY}${MM}.nc
    setenv OUTFILE ${POSTDIR}/HR2DAY_ACONC_${RUNID}_${YYYY}${MM}.nc
-   sbatch --export=ALL $WORKDIR/POST/POST/hr2day_daily_averages_batch.csh
+   sbatch --export=ALL $EQPOSTSCR/hr2day_daily_averages_batch.csh
  endif
 
 #
@@ -120,7 +121,7 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
     setenv INFILE ${POSTDIR}/COMBINE_COLUMN_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_COLUMN_${RUNID}_${YYYY}${MM}_av.nc
-    sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg_monthly_combine_batch.csh
+    sbatch --export=ALL $EQPOSTSCR/calc_tmetric_avg_monthly_combine_batch.csh
   endif
 
 
@@ -154,7 +155,7 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
     setenv INFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}_sum.nc
-    sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_sum_monthly_combine_batch.csh
+    sbatch --export=ALL $EQPOSTSCR/EQUATES/calc_tmetric_sum_monthly_combine_batch.csh
   endif
 
 
@@ -187,7 +188,7 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
     setenv INFILE ${POSTDIR}/COMBINE_INLINE_EMIS_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_INLINE_EMIS_${RUNID}_${YYYY}${MM}_sum.nc
-    sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_sum_monthly_combine_batch.csh
+    sbatch --export=ALL $EQPOSTSCR/calc_tmetric_sum_monthly_combine_batch.csh
   endif
 
 #
@@ -220,7 +221,7 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
     setenv INFILE ${POSTDIR}/COMBINE_CONC3D_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_CONC3D_${RUNID}_${YYYY}${MM}_av.nc
-    sbatch --export=ALL $WORKDIR/POST/POST/calc_tmetric_avg3d_monthly_combine_batch.csh
+    sbatch --export=ALL $EQPOSTSCR/calc_tmetric_avg3d_monthly_combine_batch.csh
   endif
 
 #> Increment both Gregorian and Julian Days
