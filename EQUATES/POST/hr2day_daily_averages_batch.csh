@@ -4,7 +4,7 @@
 #SBATCH -n 1
 #SBATCH -J calc_tmetric
 #SBATCH -p debug_queue
-#SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.3/POST/EQUATES/logs/calc_tmetric_avg_monthly_combine_%j.log
+#SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES/logs/calc_tmetric_avg_monthly_combine_%j.log
 
  set WORKDIR = /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
  set BINDIR = $WORKDIR/POST/hr2day/scripts/BLD_hr2day_v532_gcc

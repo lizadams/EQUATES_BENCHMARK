@@ -3,9 +3,9 @@
 #SBATCH -n 1
 #SBATCH -J combine
 #SBATCH -p debug_queue
-#SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.3/POST/EQUATES/logs/combine_cmaqv53_ts_aconc_dep_conc_cb6r3_ae7_aq_batch_%j.txt
+#SBATCH -o /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES/logs/combine_cmaqv53_ts_aconc_dep_conc_cb6r3_ae7_aq_batch_%j.txt
 
-set WORKDIR = /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.3
+set WORKDIR = /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
 
 set SPEC_CONC = $WORKDIR/POST/EQUATES/SpecDef_aconc_cmaqv53_ts_cb6r3_ae7_aq.txt
 set SPEC_PHOT = $WORKDIR/POST/EQUATES/SpecDef_photdiag_cmaqv53_ts_cb6r3_ae7_aq.txt
@@ -15,11 +15,11 @@ set SPEC_CONC_3D = $WORKDIR/POST/EQUATES/SpecDef_conc3d_cmaqv53_ts_cb6r3_ae7_aq.
 
 setenv GENSPEC N
 
-set BLD_DIR = $WORKDIR/POST/combine/scripts/BLD_combine_v533_gcc
+set BLD_DIR = $WORKDIR/POST/combine/scripts/BLD_combine_v532_gcc
 
-set EXEC = combine_v533.exe
+set EXEC = combine_v532.exe
 
-set VRSN = v533
+set VRSN = v532
 set compilerString = gcc
 
 #set RUNID = ${VRSN}_${compilerString}_${APPL}
