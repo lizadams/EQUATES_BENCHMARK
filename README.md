@@ -10,11 +10,9 @@
 
   4. scripts to download the EQUATES Input data from google drive
 
-  The directory structure of the gdrive_scripts directory mimics the input data directory structure used by the EQUATES CMAQ Model run script.
-
-  NOTE: Please use the gdrive executable for linux available from the CMAS Center Google Drive to avoid Error:403: Rate Limit Exceeded errors
-
-  See README Data Download Instructions https://docs.google.com/document/d/1e7B94zFkbKygVWfrhGwEZL51jF4fGXGXZbvi6KzXYQ4
+       The directory structure of the gdrive_scripts directory mimics the input data directory structure used by the EQUATES CMAQ Model run script.
+       NOTE: Please use the gdrive executable for linux available from the CMAS Center Google Drive to avoid Error:403: Rate Limit Exceeded errors
+       See README Data Download Instructions https://docs.google.com/document/d/1e7B94zFkbKygVWfrhGwEZL51jF4fGXGXZbvi6KzXYQ4
 
 
   
