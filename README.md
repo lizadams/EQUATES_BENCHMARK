@@ -12,5 +12,5 @@
 
 
 ```
-git clone -b main https://github.com/lizadams/gdrive_scripts.git gdrive_scripts
+git clone -b main https://github.com/lizadams/EQUATES.git EQUATES
 ```
