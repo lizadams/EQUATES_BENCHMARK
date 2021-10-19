@@ -155,7 +155,7 @@ while ($TODAYJ <= $STOP_DAY )  #>Compare dates in terms of YYYYJJJ
   if ( ${MMtomorrow} != ${MM} ) then
     setenv INFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}.nc
     setenv OUTFILE ${POSTDIR}/COMBINE_DEP_${RUNID}_${YYYY}${MM}_sum.nc
-    sbatch --export=ALL $EQPOSTSCR/EQUATES/calc_tmetric_sum_monthly_combine_batch.csh
+    sbatch --export=ALL $EQPOSTSCR/calc_tmetric_sum_monthly_combine_batch.csh
   endif
 
 
