@@ -129,11 +129,12 @@ which gfortran
 which gcc
 which g++
 ```
+
 If they are found, proceed to set the environment variables.
 The paths will be dependent on your compute environment
 If they are not found, reload your module (see above), or ask your system administrator for the paths to a compiler
-```
 
+```
 setenv FC gfortran
 setenv CC gcc
 setenv CXX g++
@@ -158,6 +159,7 @@ make check install
 ```
 
 15. Change directories to one level up from your current directory
+
 ```
 cd ..
 ```
@@ -225,7 +227,6 @@ echo $LD_LIBRARY_PATH
 
 ```
 setenv NFDIR $cwd/../netcdf-fortran-4.4.5-gcc9.1.0
-
 setenv CPPFLAGS -I${NCDIR}/include
 setenv LDFLAGS -L${NCDIR}/lib
 ```
@@ -294,6 +295,7 @@ or
 https://cjcoats.github.io/ioapi/AVAIL.html
 
 1. Change directories to one level up from your current location
+
 ```
 cd ../
 ```
@@ -305,42 +307,43 @@ git clone https://github.com/cjcoats/ioapi-3.2
 ```
 
 3. change directories to the ioapi-3.2 directory
+
 ```
 cd ioapi-3.2
 ```
 
-2. Change branches to 20200828 for a tagged stable version
+4. Change branches to 20200828 for a tagged stable version
 
 ```
 git checkout -b 20200828
 ```
 
-3. Change directories to the ioapi directory
+5. Change directories to the ioapi directory
 
 ```
 cd ioapi
 ```
 
-4. copy the Makefile.nocpl file to create a Makefile
+6. copy the Makefile.nocpl file to create a Makefile
 
 ```
 cp Makefile.nocpl Makefile
 ```
 
-5. Set the BIN environment variable to include the module that will be used to compile CMAQ
+7. Set the BIN environment variable to include the module that will be used to compile CMAQ
 This will help future users identify what compiler version is compatible with this library.
 
 ```
 setenv BIN Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0
 ```
 
-6. Copy an existing Makeinclude file to have this BIN name at the end
+8. Copy an existing Makeinclude file to have this BIN name at the end
 
 ```
 cp Makeinclude.Linux2_x86_64gfort Makeinclude.Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0
 ```
 
-7. Edit the Makeinclude.Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0 to comment out OMPFLAG and OMPLIBS 
+9. Edit the Makeinclude.Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0 to comment out OMPFLAG and OMPLIBS 
 settings.  This will remove the need to link the shared memory OPENMP libraries when compiling CMAQ and WRF-CMAQ.
 
 ```
@@ -348,69 +351,73 @@ settings.  This will remove the need to link the shared memory OPENMP libraries 
 #OMPLIBS   =  -fopenmp
 ```
 
-8. Create a BIN directory where the library and m3tools executables will be installed
+10. Create a BIN directory where the library and m3tools executables will be installed
 
 ```
 mkdir ../$BIN
 ```
 
-9. Link the BIN directory to a the gfort BIN directory - this step is needed for WRF-CMAQ.
+11. Link the BIN directory to a the gfort BIN directory - this step is needed for WRF-CMAQ.
 
 ```
 cd ../
 ln -s Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0 Linux2_x86_64gfort
 ```
 
-10. Set the HOME environment variable to be your LIBRARY install directory and run the make command to compile and link the ioapi library
+12. Set the HOME environment variable to be your LIBRARY install directory and run the make command to compile and link the ioapi library
 
 ```
 cd ioapi
 make 'HOME=[your_install_path]/LIBRARIES' |& tee make.log
 ```
 
-11. Change directories to the $BIN dir and verify that both the libioapi.a library was successfully built
+13. Change directories to the $BIN dir and verify that both the libioapi.a library was successfully built
 
 ```
 cd ../$BIN
 ls -lrt libioapi.a
 ```
 
-12. If you need to do a make clean, to rebuild the I/O API Library, specify the HOME directory at the command line as follows
+14. If you need to do a make clean, to rebuild the I/O API Library, specify the HOME directory at the command line as follows
 
 ```
 cd ../ioapi
 make 'HOME=[your_install_path]/LIBRARIES' clean 
 ```
 
-12. Change directories to the m3tools directory
+15. Change directories to the m3tools directory
+
 ```
 cd ../m3tools
 ```
 
-13. Copy the Makefile.nocpl to create a Makefile
+16. Copy the Makefile.nocpl to create a Makefile
+
 ```
 cp Makefile.nocpl Makefile
 ```
 
-14. Edit line 65 of the Makefile to use the NCDIR and NFDIR environment variables that you have set in the above steps to locate the netcdf C and netcdf Fortran libraries
+17. Edit line 65 of the Makefile to use the NCDIR and NFDIR environment variables that you have set in the above steps to locate the netcdf C and netcdf Fortran libraries
 
 ```
  LIBS = -L${OBJDIR} -lioapi -L${NFDIR}/lib -lnetcdff -L${NCDIR}/lib -lnetcdf $(OMPLIBS) $(ARCHLIB) $(ARCHLIBS)
  ```
 
-15. Run make to compile the m3tools
+18. Run make to compile the m3tools
+
 ```
 make |& tee make.log
 ```
-16. Check to see that the m3tools have been installed successfully
+
+19. Check to see that the m3tools have been installed successfully
+
 ```
 cd ../$BIN
 ls -rlt m3xtract
 ```
 
-17. Use test script to verify that the executables are working
+20. Use test script to verify that the executables are working
 
- 
 ```
 make test
 ```
@@ -421,7 +428,9 @@ make test
 
 https://github.com/USEPA/CMAQ/blob/5.3.2/DOCS/Users_Guide/Tutorials/CMAQ_UG_tutorial_benchmark.md
 
+```
 git clone -b 5.3.2 https://github.com/USEPA/CMAQ.git CMAQ_REPO
+```
 
 2. Build and run in a user-specified directory outside of the repository
 In the top level of CMAQ_REPO, the bldit_project.csh script will automatically replicate the CMAQ folder structure and copy every build and run script out of the repository so that you may modify them freely without version control.
@@ -431,14 +440,17 @@ In bldit_project.csh, modify the variable $CMAQ_HOME to identify the folder that
 set CMAQ_HOME = [your_work_location]/CMAQv5.3.2
 Now execute the script.
 
+```
 ./bldit_project.csh
+```
 
 
 3. Edit the config_cmaq.csh to specify the netCDF C, netCDF Fortran, and I/O API Library locations
 
+```
 cd [your_work_location]/CMAQv5.3.2
-
-vi 
+vi config_cmaq.csh
+```
 
 Edit the case gcc section 
 note, the paths need to be edited to match the location for your installation
@@ -530,12 +542,14 @@ https://docs.google.com/document/d/1e7B94zFkbKygVWfrhGwEZL51jF4fGXGXZbvi6KzXYQ4
 2. Download the EQUATES input data using the gdrive_scripts 
 
 Download emissions
+
 ```
 cd ../gdrive_scripts/data/2017_12US1/emis
 ./gdrive_download_equates_emis.csh
 ``
 
 Download meteorology
+
 ```
 cd ../gdrive_scripts/data/2017_12US1/met/mcip_v51_wrf_v411_noltng
 ./gdrive_download_equates_mcip.csh
@@ -577,5 +591,3 @@ cp -rp /proj/ie/proj/CMAS/EQUATES/EQUATES_BENCHMARK/POST/EQUATES .
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/CCTM/scripts
 sbatch run_cctm_2017_12US1_EQUATES_combine.csh
 ```
-
-
