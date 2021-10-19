@@ -1,8 +1,8 @@
-# gdrive_scripts
+# EQUATES Sample Sccripts
 
-  scripts to download data from google drive
+ This repository includes scripts to download EQUATES data from google drive and set up a CMAQv5.3.2 simulation using EQUATES input data.
 
-  The directory structure mimics the input data directory structure used by the EQUATES CMAQ Model run script.
+  The directory structure mimics the input data directory structure used by the EQUATE CMAQ model run script.
 
   NOTE: Please use the gdrive executable for linux available from the CMAS Center Google Drive to avoid Error:403: Rate Limit Exceeded errors
 
