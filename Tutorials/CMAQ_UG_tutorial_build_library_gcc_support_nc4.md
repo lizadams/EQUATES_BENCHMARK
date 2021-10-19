@@ -415,14 +415,15 @@ ls -rlt m3xtract
 make test
 ```
 
+## Install CMAQv5.3.2
 
-18. Follow the tutorial for the CMAQv5.3.2 Benchmark and obtain the CMAQv5.3.2 version.
+1. Follow the tutorial for the CMAQv5.3.2 Benchmark and obtain the CMAQv5.3.2 version.
 
 https://github.com/USEPA/CMAQ/blob/5.3.2/DOCS/Users_Guide/Tutorials/CMAQ_UG_tutorial_benchmark.md
 
 git clone -b 5.3.2 https://github.com/USEPA/CMAQ.git CMAQ_REPO
 
-19. Build and run in a user-specified directory outside of the repository
+2. Build and run in a user-specified directory outside of the repository
 In the top level of CMAQ_REPO, the bldit_project.csh script will automatically replicate the CMAQ folder structure and copy every build and run script out of the repository so that you may modify them freely without version control.
 
 In bldit_project.csh, modify the variable $CMAQ_HOME to identify the folder that you would like to install the CMAQ package under. For example:
@@ -433,7 +434,7 @@ Now execute the script.
 ./bldit_project.csh
 
 
-19. Edit the config_cmaq.csh to specify the netCDF C, netCDF Fortran, and I/O API Library locations
+3. Edit the config_cmaq.csh to specify the netCDF C, netCDF Fortran, and I/O API Library locations
 
 cd [your_work_location]/CMAQv5.3.2
 
@@ -467,26 +468,26 @@ note, the paths need to be edited to match the location for your installation
         setenv MPI_LIB_DIR      /nas/longleaf/apps-dogwood/mpi/gcc_9.1.0/openmpi_4.0.1/lib               #> MPI Lib directory path
 ```
 
-20. Source the config_cmaq.csh to create the lib directory
+4. Source the config_cmaq.csh to create the lib directory
 
 ```
 source config_cmaq.csh
 ```
 
-21. Copy the EQUATES build and run script from the EQUATES_BENCHMARK repository to the CMAQv5.3.2/CCTM/scripts directory
+5. Copy the EQUATES build and run script from the EQUATES_BENCHMARK repository to the CMAQv5.3.2/CCTM/scripts directory
 
 ```
 cp bldit_cctm.csh /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/CCTM/scripts
 cp run_cctm_2017_12US1_EQUATES_combine.csh /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/CCTM/scripts
 ```
 
-22. Build CMAQv5.3.2 to support the STAGE dry deposition option 
+6. Build CMAQv5.3.2 to support the STAGE dry deposition option 
 
 ```
 ./bldit_cctm.csh gcc |& tee ./bldit_cctm.gcc.log
 ```
 
-23. Build the POST processing routines
+7. Build the POST processing routines
 
 ```
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/combine/scripts
@@ -508,7 +509,7 @@ cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/bldoverlay/scripts
 ./bldit_bldoverlay.csh gcc |& tee ./bldit_bldoverlay.gcc.log
 ```
 
-23. Edit the SBATCH section of the EQUATES Benchmark run script to use the SLURM resources on your machine 
+8. Edit the SBATCH section of the EQUATES Benchmark run script to use the SLURM resources on your machine 
 and modify the CMAQ_HOME directory to specify your local path
 
 ```
@@ -517,13 +518,16 @@ vi run_cctm_2017_12US1_EQUATES_combine.csh
 
  setenv CMAQ_HOME /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
 
-24. Download the gdrive script from the Google Drive by following the Gdrive section of this README
+
+## Download EQUATES Benchmark Input Data
+
+1. Download the gdrive script from the Google Drive by following the Gdrive section of this README
 
 
 https://docs.google.com/document/d/1e7B94zFkbKygVWfrhGwEZL51jF4fGXGXZbvi6KzXYQ4
 
 
-24. Download the EQUATES input data using the gdrive_scripts 
+2. Download the EQUATES input data using the gdrive_scripts 
 
 Download emissions
 ```
@@ -544,7 +548,9 @@ cd ../gdrive_scripts/data/2017_12US1/icbc
 ./gdrive_download_equates.icbc.csh
 ```
 
-25. Specify the 2017_12US1 as the input data directory in the CMAQv5.3.2 CCTM run script
+## Update EQUATES Benchmark Run Script to specify path to downloaded input data
+
+1. Specify the 2017_12US1 as the input data directory in the CMAQv5.3.2 CCTM run script
 
 ```
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/CCTM/scripts
@@ -554,22 +560,22 @@ modify to specify the location of the EQUATES input files downloaded from the Go
 setenv INPDIR  ${CMAQ_HOME}/2017_12US1  #Input Directory
 ```
 
-26. Copy the POST/EQUATES directory and scripts from this repository under the CMAQv5.3.2 directory, as these scripts will be called by the run_cctm_2017_12US1_EQUATES_combine.csh script.
+## Modify EQUATES Benchmark Post-processing Scripts for your installation
+
+1. Copy the POST/EQUATES directory and scripts from this repository under the CMAQv5.3.2 directory, as these scripts will be called by the run_cctm_2017_12US1_EQUATES_combine.csh script.
 
 ```
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST
 cp -rp /proj/ie/proj/CMAS/EQUATES/EQUATES_BENCHMARK/POST/EQUATES .
 ```
 
-27. Edit the scripts under /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES to specify your local WORKDIR and CMAQREPO
+2. Edit the scripts under /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/POST/EQUATES to specify your local WORKDIR and CMAQREPO
 
-28. Run the equates run script
+## Run the equates run script
 
 ```
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2/CCTM/scripts
 sbatch run_cctm_2017_12US1_EQUATES_combine.csh
 ```
-
-
 
 
