@@ -1,6 +1,6 @@
-# EQUATES Sample Sccripts
+# EQUATES Sample Scripts
 
- This repository includes scripts to download EQUATES data from google drive and set up a CMAQv5.3.2 simulation using EQUATES input data.
+ This repository includes scripts to download EQUATES data from the CMAS Data Warehouse Google Drive and set up a CMAQv5.3.2 simulation using EQUATES input data.
 
   The directory structure mimics the input data directory structure used by the EQUATE CMAQ model run script.
 
