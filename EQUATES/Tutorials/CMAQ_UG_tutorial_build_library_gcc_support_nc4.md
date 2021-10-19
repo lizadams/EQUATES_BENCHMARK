@@ -1,8 +1,12 @@
-##Following these instructions
-##https://www.unidata.ucar.edu/software/netcdf/documentation/NUG/getting_and_building_netcdf.html
-##Building with netCDF-4 and the Remote Data Client
-##The usual way of building netCDF requires the HDF5, zlib, and curl libraries. 
-##Versions required are at least HDF5 1.8.9, zlib 1.2.5, and curl 7.18.0 or later.
+## Following these instructions
+
+ https://www.unidata.ucar.edu/software/netcdf/documentation/NUG/getting_and_building_netcdf.html
+
+ Building with netCDF-4 and the Remote Data Client
+
+ netCDF requires the HDF5, zlib, and curl libraries. 
+
+## Versions required are at least HDF5 1.8.9, zlib 1.2.5, and curl 7.18.0 or later.
 
 set install directory
 set INSTALL_DIR = /proj/ie/proj/CMAS/EQUATES/LIBRARIES/
@@ -404,5 +408,40 @@ cd ../$BIN
 ls -rlt m3xtract
 ```
 
-17. After successfull completion of this tutorial, the user is now ready to proceed to the [CMAQ Installation & Benchmarking Tutorial](./CMAQ_UG_tutorial_benchmark.md)
+17. Use test script to verify that the executables are working
+
+ 
+```
+cd ../../ioapi3.2/tests
+```
+
+Set the following environment variables - based on your system.
+
+example:
+
+```
+setenv BASEDIR /proj/ie/proj/CMAS/EQUATES/LIBRARIES/ioapi-3.2
+setenv BIN Linux2_x86_64gfort_openmpi_4.0.1_gcc_9.1.0
+```
+
+Run the script as follows: 
+```
+./ioapitest.csh ${BASEDIR} ${BIN}
+```
+
+It generated the following output.
+
+[lizadams@dogwood-login1 ioapitest.5232]$ pwd
+/tmp/ioapitest.5232
+[lizadams@dogwood-login1 ioapitest.5232]$ ls
+LL_2D.NC15_LAM_19x17.nc  LL_2D.NC15_LAM_19x17.stats  m3fake.yeartest.log  TEST_2D.nc
+[lizadams@dogwood-login1 ioapitest.5232]$ ls -rlt
+total 2688
+-rw-rw-r-- 1 lizadams rc_cep-emc_psx   14168 Oct 19 12:06 LL_2D.NC15_LAM_19x17.nc
+-rw-rw-r-- 1 lizadams rc_cep-emc_psx     871 Oct 19 12:06 LL_2D.NC15_LAM_19x17.stats
+-rw-rw-r-- 1 lizadams rc_cep-emc_psx 2289052 Oct 19 12:07 TEST_2D.nc
+-rw-rw-r-- 1 lizadams rc_cep-emc_psx  438501 Oct 19 12:07 m3fake.yeartest.log
+
+
+18. After successfull completion of this tutorial, the user is now ready to proceed to the [CMAQ Installation & Benchmarking Tutorial](./CMAQ_UG_tutorial_benchmark.md)
 
