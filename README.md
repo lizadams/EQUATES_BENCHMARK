@@ -10,7 +10,7 @@
   
   2. CCTM/scripts: CMAQ Scripts to build and run CMAQv5.3.2 using EQUATES Input data to restart as the initial conditions.
 
-  3. POST/EQUATES: Post-processing scripts called by the CMAQ run script that will create the post procecessed output data (combine, hr2day and monthly average).
+  3. POST/EQUATES: Post-processing scripts called by the CMAQ run script that will create the post-processed output data (combine, hr2day and monthly average).
 
   4. gdrive_scripts/data/2017_12US1: scripts to download the EQUATES Input data from google drive
 
