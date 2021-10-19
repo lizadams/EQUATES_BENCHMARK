@@ -1,6 +1,8 @@
-# EQUATES Benchmark 
+# EQUATES_Benchmark Sample Scripts
 
-  This github repository includes scripts and tutorials required to run a benchmark for EQUATES and includes:
+  This repository includes scripts to download EQUATES data from the CMAS Data Warehouse Google Drive and set up a CMAQv5.3.2 simulation using EQUATES input data.
+
+  The directory structure mimics the input data directory structure used by the EQUATE CMAQ model run script.
 
   1. Tutorial with instructions on how to build the libraries and CMAQv5.3.2 to read the compressed input data (*.nc4)
   
@@ -16,9 +18,9 @@
 
 
   
-  Obtain the EQUATES Benchmark github repository using the command:
+  Obtain the EQUATES_Benchmark github repository using the command:
 
 
 ```
-git clone -b main https://github.com/lizadams/EQUATES.git EQUATES
+git clone -b main https://github.com/lizadams/EQUATES_BENCHMARK.git EQUATES_BENCHMARK
 ```
