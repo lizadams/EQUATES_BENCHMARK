@@ -422,22 +422,18 @@ ls -rlt m3xtract
 make test
 ```
 
-## Install CMAQv5.3.2
+## Install CMAQv5.3.2.1
 
-1. Follow the tutorial for the CMAQv5.3.2 Benchmark and obtain the CMAQv5.3.2 version.
+1. Go to the Dataverse site link (https://doi.org/10.15139/S3/F2KJSK)
+to download the EQUATES_CMAQv5321_12US1_GitHub_Repo.tar.gz file and untar/unzip it:
 
-https://github.com/USEPA/CMAQ/blob/5.3.2/DOCS/Users_Guide/Tutorials/CMAQ_UG_tutorial_benchmark.md
-
-```
-git clone -b 5.3.2 https://github.com/USEPA/CMAQ.git CMAQ_REPO
-```
 
 2. Build and run in a user-specified directory outside of the repository
 In the top level of CMAQ_REPO, the bldit_project.csh script will automatically replicate the CMAQ folder structure and copy every build and run script out of the repository so that you may modify them freely without version control.
 
 In bldit_project.csh, modify the variable $CMAQ_HOME to identify the folder that you would like to install the CMAQ package under. For example:
 
-set CMAQ_HOME = [your_work_location]/CMAQv5.3.2
+set CMAQ_HOME = [your_work_location]/CMAQv5.3.1
 Now execute the script.
 
 ```
