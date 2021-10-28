@@ -9,7 +9,7 @@ EQUATES emissions and meteorolgoy datasets have been compressed using netcdf4 co
 
 ## EQUATES Benchmark Repository Guide
 Documentation and sample scripts are organized as follows:
-  1. [Tutorial](Tutorials/CMAQ_UG_tutorial_build_library_gcc_support_nc4_EQUATES.md): Tutorial with instructions on how to build CMAQv5.3.2.1 to use EQUATES input data including the required libraries for reading the compressed input files (*.nc4).  
+  1. [Tutorial](Tutorials): Tutorial with instructions on how to build CMAQv5.3.2.1 to use EQUATES input data including the required libraries for reading the compressed input files (*.nc4).  
   
   2. [EQUATES Build and Run Scripts](CCTM/scripts): CMAQ scripts to build and run CMAQv5.3.2.1 using EQUATES input data to restart as the initial conditions.
 
