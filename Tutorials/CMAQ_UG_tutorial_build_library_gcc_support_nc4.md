@@ -424,9 +424,11 @@ make test
 
 ## Install CMAQv5.3.2.1
 
-1. Go to the Dataverse site link (https://doi.org/10.15139/S3/F2KJSK)
-to download the EQUATES_CMAQv5321_12US1_GitHub_Repo.tar.gz file and untar/unzip it:
+1. Download the CMAQv5.3.2.1 code using the following
 
+```
+git clone -b 5.3.2.1 https://github.com/lizadams/cmaq.git CMAQ_REPO
+```
 
 2. Build and run in a user-specified directory outside of the repository
 In the top level of CMAQ_REPO, the bldit_project.csh script will automatically replicate the CMAQ folder structure and copy every build and run script out of the repository so that you may modify them freely without version control.
@@ -492,7 +494,7 @@ cp run_cctm_2017_12US1_EQUATES_combine.csh /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2
 6. Build CMAQv5.3.2.1 to support the STAGE dry deposition option 
 
 ```
-./bldit_cctm.csh gcc |& tee ./bldit_cctm.gcc.log
+./bldit_cctm.EQUATES.csh gcc |& tee ./bldit_cctm.EQUATES..gcc.log
 ```
 
 7. Build the POST processing routines
@@ -572,7 +574,9 @@ setenv INPDIR  ${CMAQ_HOME}/2017_12US1  #Input Directory
 
 ## Modify EQUATES Benchmark Post-processing Scripts for your installation
 
-1. Copy the POST/EQUATES directory and scripts from this repository under the CMAQv5.3.2.1 directory, as these scripts will be called by the run_cctm_2017_12US1_EQUATES_combine.csh script.
+1. The POST/EQUATES directory is available under the CMAQv5.3.2.1 directory. 
+These scripts will be called by the run_cctm_2017_12US1_EQUATES_combine.csh script.
+If you are using a different version of CMAQ, ie CMAQv5.3.3, you will need to copy the POST/EQUATES scripts to your repository for the CMAQv5.3.3 version.
 
 ```
 cd /proj/ie/proj/CMAS/EQUATES/CMAQv5.3.2.1/POST
