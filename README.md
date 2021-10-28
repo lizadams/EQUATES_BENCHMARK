@@ -15,7 +15,7 @@ Documentation and sample scripts are organized as follows:
 
   3. [EQUATES Post Processing Scripts](POST/EQUATES): Post-processing scripts called by the CMAQ run script that will create the post-processed output data (combine, hr2day and monthly average).
 
-  4. EQUATES used CMAQv5.3.2.1, a version based on CMAQv5.3.2 that includes bugfixes numbered 2, 9, 11, 13, and 14 in the v5.3.3 bugfix page https://github.com/USEPA/CMAQ/blob/main/DOCS/Release_Notes/CMAQv5.3.3_bugfixes.md See the tutorial for instructions to download this version of CMAQ, if you are intending to reproduce the benchmark case.
+  4. EQUATES used CMAQv5.3.2.1, a version based on CMAQv5.3.2 that includes bugfixes numbered 2, 9, 11, 13, and 14 in the v5.3.3 bugfix page https://github.com/USEPA/CMAQ/blob/main/DOCS/Release_Notes/CMAQv5.3.3_bugfixes.md See the tutorial for instructions to download this version of CMAQ, if you are intending to reproduce the EQUATES benchmark case.
 
   5. [gdrive download scripts](gdrive_scripts/data/2017_12US1): scripts to download the EQUATES Input data from google drive
 
