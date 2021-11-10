@@ -44,6 +44,14 @@
  setenv SPECIES_8 "PM25_OC_AVG,ug/m3,PM25_OC,AVG"
  setenv SPECIES_9 "PM25_EC_AVG,ug/m3,PM25_EC,AVG"
 
+#> Optional desired first and last processing date. The program will
+#> adjust the requested dates if the desired range is not covered by
+#> the input file(s). If these dates are not specified, the processing
+#> will be performed for the longest possible time record that can be
+#> derived from the model input file(s)
+  unsetenv START_DATE
+  unsetenv END_DATE
+
 #> Set path and name of combine infile (this has already been set in the combine script)
  setenv M3_FILE_1 ${INFILE}
 
