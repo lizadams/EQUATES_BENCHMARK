@@ -71,7 +71,7 @@ module load openmpi_4.0.1/gcc_9.1.0
 
 5. cd hdf5-1.10.7
 
-6. ./configure --prefix=${INSTALL_DIR}/hdf5-1.10-7-gcc9.1.0 --with-zlib=${INSTALL_DIR}/zlib-1.2.11_gcc9.1.0/include,${INSTALL_DIR}/zlib-1.2.11_gcc9.1.0/lib --enable-hl
+6. `./configure --prefix=${INSTALL_DIR}/hdf5-1.10-7-gcc9.1.0 --with-zlib=${INSTALL_DIR}/zlib-1.2.11_gcc9.1.0/include,${INSTALL_DIR}/zlib-1.2.11_gcc9.1.0/lib --enable-hl`
 
 7. make
 
