@@ -16,7 +16,7 @@ set runto = 12
 
 while ($month <= $runto)
 	  echo "Process files ending in $month"
-	  #	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'BCON_CONC_12US1_CMAQv53_TS_108NHEMI_regrid_${month}.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
+	   gdrive list --name-width 200 --absolute -q "trashed = false and name = 'BCON_CONC_12US1_CMAQv53_TS_108NHEMI_regrid_${year}${month}.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
 	    gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_CGRID_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0
           gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_SOILOUT_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
          gdrive list --name-width 200 --absolute -q "trashed = false and name = 'CCTM_MEDIA_CONC_v532_cb6r3_ae7_aq_WR413_MYR_STAGE_${year}_12US1_${year}${month}15.nc'" --no-header  | cut -d " " -f1 - | xargs -L 1 gdrive download -r --timeout 0 
